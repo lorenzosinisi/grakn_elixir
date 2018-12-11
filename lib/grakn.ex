@@ -75,7 +75,7 @@ defmodule Grakn do
         IO.puts "never reaches here!"
       end)
   """
-  @spec rollback(DBConnection.t, any) :: no_return()
+  @spec rollback(DBConnection.t(), any) :: no_return()
   defdelegate rollback(conn, any), to: DBConnection
 
   def child_spec(opts) do
