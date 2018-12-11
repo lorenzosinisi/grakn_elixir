@@ -21,7 +21,7 @@ defmodule GraknElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:db_connection, "~> 1.1.0"},
+      {:db_connection, "~> 2.0.0"},
       {:grpc, "~> 0.3.0-alpha.2"},
       {:cowlib, "~> 2.4.0", override: true},
       {:protobuf, "~> 0.5.3"},
