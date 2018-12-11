@@ -10,7 +10,7 @@ defmodule GraknTest do
   describe "query" do
     test "returs a non-empty concept iterator", context do
       Grakn.transaction(context[:conn], fn conn ->
-        {:ok, _query, iterator} = Grakn.query(conn, Grakn.Query.graql("match $x; get;"))
+        {:ok, iterator} = Grakn.query(conn, Grakn.Query.graql("match $x; get;"))
         assert not Enum.empty?(iterator)
       end)
     end
@@ -84,7 +84,7 @@ defmodule GraknTest do
       Grakn.transaction(
         context[:conn],
         fn conn ->
-          {:ok, _query, iterator} =
+          {:ok, iterator} =
             Grakn.query(conn, Grakn.Query.graql("define name sub attribute, datatype string;"))
 
           assert not Enum.empty?(iterator)
@@ -96,7 +96,7 @@ defmodule GraknTest do
 
   describe "commands" do
     test "get all keyspaces should contain the default grakn keyspace", context do
-      {:ok, _command, names} = Grakn.command(context[:conn], Grakn.Command.get_keyspaces())
+      {:ok, names} = Grakn.command(context[:conn], Grakn.Command.get_keyspaces())
       assert Enum.member?(names, "grakn")
     end
 

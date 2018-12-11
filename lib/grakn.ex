@@ -30,6 +30,13 @@ defmodule Grakn do
   @spec query(conn(), Grakn.Query.t(), Keyword.t()) :: any()
   def query(conn, query, opts \\ []) do
     DBConnection.execute(conn, query, [], opts)
+    |> case do
+      {:ok, _query, result} ->
+        {:ok, result}
+
+      otherwise ->
+        otherwise
+    end
   end
 
   @doc """
@@ -38,11 +45,25 @@ defmodule Grakn do
   @spec query!(conn(), Grakn.Query.t(), Keyword.t()) :: any()
   def query!(conn, %Grakn.Query{} = query, opts \\ []) do
     DBConnection.execute!(conn, query, [], opts)
+    |> case do
+      {:ok, _query, result} ->
+        {:ok, result}
+
+      otherwise ->
+        otherwise
+    end
   end
 
   @spec command(conn(), Grakn.Command.t(), Keyword.t()) :: any()
   def command(conn, %Grakn.Command{} = command, opts \\ []) do
     DBConnection.execute(conn, command, [], opts)
+    |> case do
+      {:ok, _command, result} ->
+        {:ok, result}
+
+      otherwise ->
+        otherwise
+    end
   end
 
   @doc """

@@ -89,6 +89,13 @@ defmodule Grakn.Protocol do
     |> Tuple.append(state)
   end
 
+  @doc """
+  DBConnection callback
+  """
+  def handle_status(_, %{transaction_status: status} = state) do
+    {status, state}
+  end
+
   def handle_rollback(_opts, %{transaction: tx} = state) do
     :ok = Grakn.Transaction.cancel(tx)
     {:ok, nil, %{state | transaction: nil}}
